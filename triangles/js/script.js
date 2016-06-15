@@ -1,6 +1,6 @@
 // Define audio information and load
 var audio = new Audio();
-audio.src = 'track.mp3';
+audio.src = 'https://willianjusten.com.br/assets/music/cynamatics.mp3';
 audio.loop = true;
 audio.autoplay = true;
 audio.crossOrigin = "anonymous";
