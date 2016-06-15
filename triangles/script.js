@@ -39,7 +39,8 @@
         // Define main variables for canvas start
         canvas = document.getElementById('analyser');
         canvasCtx = canvas.getContext('2d');
-        defineSizesCanvas();
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         
         canvasCtx.save();
         analyser.getByteFrequencyData(fbc_array);
