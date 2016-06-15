@@ -12,7 +12,6 @@ var canvas, canvasCtx;
 function createCanvas() {
     canvas = document.getElementById('analyser');
     canvasCtx = canvas.getContext('2d');
-    console.log("init inside: ", canvas);
 }
 
 
@@ -78,9 +77,7 @@ function frameLooper() {
 // call the magic =D
 function init() {
     createAudioContext();
-    console.log("init before: ", canvas);
     createCanvas();
-    console.log("init after: ", canvas);
     defineSizesCanvas();
     frameLooper();
 }
