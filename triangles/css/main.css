@@ -11,6 +11,29 @@ canvas {
     height:100vh;
     background: radial-gradient(ellipse at center, rgba(76,76,26,1) 0%,rgb(27, 47, 14) 0%,rgba(0,0,0,1) 100%);
 }
+#mobile {
+    display: none;
+}
+@media (max-width: 768px) {
+    #mobile {
+        position: absolute;
+        z-index: 50;
+        background: #000;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -ms-align-items: center;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        color: #fff;
+        font-family: sans-serif;
+        text-align: center;
+    }
+}
 
 footer {
     position: absolute;
