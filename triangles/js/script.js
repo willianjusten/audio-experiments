@@ -5,20 +5,6 @@ audio.loop = true;
 audio.autoplay = true;
 audio.crossOrigin = "anonymous";
 
-// Define main variables for canvas start
-var canvas, canvasCtx;
-
-// Define Canvas helpers
-function createCanvas() {
-    canvas = document.getElementById('analyser');
-    canvasCtx = canvas.getContext('2d');
-}
-
-function defineSizesCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
 // Define variables for analyser
 var audioContext, analyser, source, fbc_array, data, len, total;
 
@@ -31,6 +17,20 @@ function createAudioContext() {
     source = audioContext.createMediaElementSource(audio);
     source.connect(analyser);
     analyser.connect(audioContext.destination);
+}
+
+// Define main variables for canvas start
+var canvas, canvasCtx;
+
+// Define Canvas helpers
+function createCanvas() {
+    canvas = document.getElementById('analyser');
+    canvasCtx = canvas.getContext('2d');
+}
+
+function defineSizesCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
 
 // Define math info for draw
