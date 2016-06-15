@@ -14,7 +14,6 @@ function createCanvas() {
     canvasCtx = canvas.getContext('2d');
 }
 
-
 function defineSizesCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
