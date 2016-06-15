@@ -8,12 +8,8 @@
 
     // Define main variables for canvas start
     var canvas, canvasCtx;
-
-    // Define Canvas helpers
-    function createCanvas() {
-        canvas = document.getElementById('analyser');
-        canvasCtx = canvas.getContext('2d');
-    }
+    canvas = document.getElementById('analyser');
+    canvasCtx = canvas.getContext('2d');
 
     function defineSizesCanvas() {
         canvas.width = window.innerWidth;
@@ -77,7 +73,6 @@
     // call the magic =D
     function init() {
         createAudioContext();
-        createCanvas();
         defineSizesCanvas();
         frameLooper();
     }
