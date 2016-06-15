@@ -2,7 +2,7 @@
 var audio = new Audio();
 audio.src = 'https://willianjusten.com.br/assets/music/track.mp3';
 audio.loop = true;
-audio.play();
+audio.autoplay = true;
 audio.crossOrigin = "anonymous";
 
 // Define main variables for canvas start
