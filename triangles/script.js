@@ -1,4 +1,4 @@
-(function() {
+(function(window, document) {
     // Define audio information and load
     var audio = new Audio();
     audio.src = 'https://willianjusten.com.br/assets/music/track.mp3';
@@ -6,12 +6,25 @@
     audio.autoplay = true;
     audio.crossOrigin = "anonymous";
 
+    // Define main variables for canvas start
+    var canvas, canvasCtx;
+
+    function defineSizesCanvas() {
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvasCtx.canvas.width = w;
+        canvasCtx.canvas.height = h;
+        cx = w / 2;
+        cy = h / 2;
+    }
+
     // Define variables for analyser
-    var audioContext, analyser, source, fbc_array, data, len, total;
+    var AudioContext = (window.AudioContext || window.webkitAudioContext),
+        audioContext, analyser, source, fbc_array, data, len, total;
 
     // Define Audio Analyser Helpers
     function createAudioContext() {
-        audioContext = new (window.AudioContext || window.webkitAudioContext);
+        audioContext = new AudioContext();
         analyser = audioContext.createAnalyser();
         analyser.fftSize = 1024; // change this to more or less triangles
         len = analyser.fftSize / 16;
@@ -22,11 +35,13 @@
 
     // Define math info for draw
     var i,
-        cx, cy,
+        cx = 0,
+        cy = 0,
+        w = 0,
+        h = 0,
         r = 50,
-        angle,
         beginAngle = 0,
-        canvas, canvasCtx,
+        angle,
         twoPI = 2 * Math.PI,
         angleGap = twoPI / 3,
         color = 'rgba(115, 226, 36, 0.5)';
@@ -35,20 +50,12 @@
     function frameLooper() {
         window.requestAnimationFrame(frameLooper);
         fbc_array = new Uint8Array(analyser.frequencyBinCount);
-        
-        // Define main variables for canvas start
-        canvas = document.getElementById('analyser');
-        canvasCtx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
+
         canvasCtx.save();
         analyser.getByteFrequencyData(fbc_array);
         data = fbc_array;
         angle = beginAngle;
-        cx = canvas.width / 2;
-        cy = canvas.height / 2;
-        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+        canvasCtx.clearRect(0, 0, w, h);
         canvasCtx.strokeStyle = color;
         canvasCtx.globalCompositeOperation = 'lighter';
         canvasCtx.lineWidth = 10;
@@ -70,15 +77,13 @@
     // call the magic =D
     function init() {
         createAudioContext();
+        canvas = document.createElement('canvas');
+        canvasCtx = canvas.getContext('2d');
+        document.body.appendChild(canvasCtx.canvas);
+        defineSizesCanvas();
         frameLooper();
-    }
-
-    function defineSizesCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
     }
 
     window.addEventListener('load', init, false);
     window.addEventListener('resize', defineSizesCanvas, false);
-})();
-
+})(window, document);
