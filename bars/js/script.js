@@ -12,6 +12,8 @@ var audioContext, analyser, source, fbc_array;
 function createAudioContext() {
     audioContext = new (window.AudioContext || window.webkitAudioContext);
     analyser = audioContext.createAnalyser();
+    fbc_array = new Uint8Array(analyser.frequencyBinCount);
+    
     source = audioContext.createMediaElementSource(audio);
     source.connect(analyser);
     analyser.connect(audioContext.destination);
@@ -37,8 +39,6 @@ var bars, bar_x, bar_width, bar_height;
 // Create the animation
 function frameLooper() {
     window.requestAnimationFrame(frameLooper);
-    fbc_array = new Uint8Array(analyser.frequencyBinCount);
-
     analyser.getByteFrequencyData(fbc_array);
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height); 
     canvasCtx.fillStyle = 'green';
