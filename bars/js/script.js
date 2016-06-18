@@ -10,12 +10,18 @@ var audioContext, analyser, source, fbc_array;
 
 // Define Audio Analyser Helpers
 function createAudioContext() {
+    // creating the context and pluging the stream to api node
     audioContext = new (window.AudioContext || window.webkitAudioContext);
+    source = audioContext.createMediaElementSource(audio);
+
+    // creating the analyser and defining the frequency array
     analyser = audioContext.createAnalyser();
     fbc_array = new Uint8Array(analyser.frequencyBinCount);
-    
-    source = audioContext.createMediaElementSource(audio);
+
+    // Connect the output of the source to the input of the analyser
     source.connect(analyser);
+
+    // Connect the output of the analyser to the destination
     analyser.connect(audioContext.destination);
 }
 
@@ -38,8 +44,16 @@ var bars, bar_x, bar_width, bar_height;
 
 // Create the animation
 function frameLooper() {
+    // recursive to create our animation
     window.requestAnimationFrame(frameLooper);
+    // Get the new frequency data
     analyser.getByteFrequencyData(fbc_array);
+    // udpate the visualization
+    render();
+}
+
+// Draw 
+function render() {
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height); 
     canvasCtx.fillStyle = 'green';
     bars = 100;
