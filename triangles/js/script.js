@@ -19,23 +19,6 @@ function createAudioContext() {
     analyser.connect(audioContext.destination);
 }
 
-// Define Audio Analyser Helpers
-function createAudioContext() {
-    // creating the context and pluging the stream to api node
-    audioContext = new (window.AudioContext || window.webkitAudioContext);
-    source = audioContext.createMediaElementSource(audio);
-
-    // creating the analyser and defining the frequency array
-    analyser = audioContext.createAnalyser();
-    fbc_array = new Uint8Array(analyser.frequencyBinCount);
-
-    // Connect the output of the source to the input of the analyser
-    source.connect(analyser);
-
-    // Connect the output of the analyser to the destination
-    analyser.connect(audioContext.destination);
-}
-
 // Define main variables for canvas start
 var canvas, canvasCtx;
 
