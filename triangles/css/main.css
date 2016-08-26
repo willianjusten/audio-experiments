@@ -14,7 +14,7 @@ canvas {
 #mobile {
     display: none;
 }
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
     #mobile {
         position: absolute;
         z-index: 50;
@@ -33,7 +33,7 @@ canvas {
         font-family: sans-serif;
         text-align: center;
     }
-}
+}*/
 
 footer {
     position: absolute;
