@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Visualizer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html { margin: 0; padding: 0; background: #000; overflow: hidden; }
+.hidden { display: none; }
+</style>
+<meta property="og:title" content="Visualizer" />
+<meta property="og:description" content="HTML5 audio visualizer for microphone or line-in input. Chrome recommended, Firefox works OK. Click or use 1-7 to select a visualization and press += to change variants." />
+<meta property="og:image" content="http://ianharmon.com/projects/viz/thumbnail.jpg" />
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<canvas id="buffer" class="hidden"></canvas>
+<img id="particleImage" class="hidden" src="particle400.png">
+<img id="image" class="hidden" src="pyramid.png">
+<script type="text/javascript" src="vizRadialBars.js"></script>
+<script type="text/javascript" src="vizRadialArcs.js"></script>
+<script type="text/javascript" src="vizFlyout.js"></script>
+<script type="text/javascript" src="vizSunburst.js"></script>
+<script type="text/javascript" src="vizBoxes.js"></script>
+<script type="text/javascript" src="vizSpikes.js"></script>
+<script type="text/javascript" src="vizImage.js"></script>
+<script type="text/javascript" src="visualizer.js"></script>
+</body>
+</html>
